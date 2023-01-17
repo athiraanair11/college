@@ -2,8 +2,13 @@ const Bodyparser=require("body-parser")
 const Express=require("Express")
 const Cors=require("Cors")
 const Mongoose=require("Mongoose")
+const collegeModel = require("./models/collegeModel")
 
 var app=Express()
+
+app.use(Bodyparser.json())
+app.use(Bodyparser.urlencoded({extended:true}))
+
 
 
 app.get("/",(req,res)=>{
@@ -13,12 +18,15 @@ app.get("/",(req,res)=>{
 
 app.post("/studentadd",(req,res)=>{
 
+    let data=new collegeModel(req.body)
+    console.log(data)
+
     res.send("add student details")
 })
 
 app.post("/studentsearch",(req,res)=>{
 
-
+  
     res.send("search student details")
 })
 
@@ -33,6 +41,7 @@ app.get("/studentviewall",(req,res)=>{
 })
 
 app.post("/facultyadd",(req,res)=>{
+    
 
     res.send("add faculty")
 })
